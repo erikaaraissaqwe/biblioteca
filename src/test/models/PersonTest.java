@@ -213,7 +213,8 @@ public class PersonTest {
     public void testSetPhoneNumber() {
         ArrayList<String> phones2 = new ArrayList<>(Arrays.asList("16 99254-9652", "87 99254-9652"));
         principal.setPhoneNumber(phones2);
-        Assertions.assertArrayEquals(new ArrayList[]{phones2}, new ArrayList[]{(ArrayList) principal.getPhoneNumber()});
+        Assertions.assertArrayEquals(new ArrayList[]{phones2},
+                new ArrayList[]{(ArrayList) principal.getPhoneNumber()});
     }
 
     @Test
@@ -251,8 +252,6 @@ public class PersonTest {
     @Order(20)
     public void testCreateNewPerson() {
         Person p = new Person("09548934418", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/1980"), PROFESSOR);
-        assertNotEquals(p, principal);
-        assertEquals(PROFESSOR,p.getOccupation());
         assertAll(
                 () -> assertNotNull(p),
                 () -> assertEquals("Erika Bueno", p.getName()),
@@ -260,5 +259,31 @@ public class PersonTest {
                 () -> assertEquals(PROFESSOR, p.getOccupation()),
                 () -> assertEquals("Rua das Alamedas", p.getRua())
         );
+    }
+
+    @Test
+    @DisplayName("Testa o equals do Person")
+    @Order(27)
+    public void testEqualsPerson() {
+        Person p = new Person("05802820403", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/1980"), ALUNO);
+        assertTrue(p.equals(principal));
+    }
+
+    @Test
+    @DisplayName("Testa o toString do Person")
+    @Order(28)
+    public void testToStringPerson() {
+        Person p = new Person("09548936461", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/1980"), ALUNO);
+        String personForToString = "\nPerson:" +
+                "\nCpf=" + p.getCpf() + '\n' +
+                "Name=" + p.getName() + '\n' +
+                "Rua=" + p.getRua() + '\n' +
+                "Number=" + p.getNumber() +'\n'+
+                "Cep=" + p.getCep() + '\n' +
+                "Emails=" + p.getEmails() + '\n'+
+                "PhoneNumber=" + p.getPhoneNumber() +'\n'+
+                "Birthday=" + p.getBirthday() +'\n'+
+                "Occupation=" + p.getOccupation() +'\n';
+        assertEquals(personForToString, p.toString());
     }
 }

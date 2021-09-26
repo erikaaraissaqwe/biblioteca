@@ -4,17 +4,16 @@ import main.utils.DataValidator;
 import main.utils.Occupation;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Library {
 
-    private List<Person> people;
-    private List<Book> books;
+    private final List<Person> people;
+    private final List<Book> books;
 
     public Library() {
-        people = new ArrayList<Person>();
-        books = new ArrayList<Book>();
+        people = new ArrayList<>();
+        books = new ArrayList<>();
     }
 
     public List<Person> getAllPersons(){
