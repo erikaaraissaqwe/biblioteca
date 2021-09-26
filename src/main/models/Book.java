@@ -13,6 +13,9 @@ public class Book {
 
     private Long numberOfPages;
 
+    public Book() {
+    }
+
     public Book(String isbn, String title, String genre, List<String> authors, Long numberOfPages) {
         this.isbn = isbn;
         this.title = title;

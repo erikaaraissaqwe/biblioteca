@@ -1,4 +1,4 @@
-package test.models;
+package models;
 
 public class BookTest {
 }

@@ -1,7 +1,11 @@
 package main.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DataValidator {
-    private static boolean isCpf(String cpf){
+    public static boolean isCpf(String cpf){
         if (cpf.equals("00000000000") ||
                 cpf.equals("11111111111") ||
                 cpf.equals("22222222222") || cpf.equals("33333333333") ||
@@ -55,15 +59,15 @@ public class DataValidator {
         return num.matches("^[0-9]*$");
     }
 
-    public static String cpfVerifier(String cpf){
-        if (isCpf(cpf))
-            return cpf;
-        return null;
-    }
-
-    public static String phoneVerifier(String phone){
-        if (isPhone(phone))
-            return phone;
+    public static Date dateUser(String data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataUsuario;
+        try {
+            dataUsuario = sdf.parse(data);
+            return dataUsuario;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

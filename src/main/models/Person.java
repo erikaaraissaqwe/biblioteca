@@ -24,6 +24,9 @@ public class Person {
 
     private Occupation occupation;
 
+    public Person() {
+    }
+
     public Person(String cpf, String name, String rua, Long number, String cep, List<String> emails, List<String> phoneNumber, Date birthday, Occupation occupation) {
         this.cpf = cpf;
         this.name = name;
@@ -114,5 +117,19 @@ public class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return cpf.equals(person.cpf);
+    }
+
+    @Override
+    public String toString() {
+        return "\nPerson:" +
+                "\nCpf=" + cpf + '\n' +
+                "Name=" + name + '\n' +
+                "Rua=" + rua + '\n' +
+                "Number=" + number +'\n'+
+                "Cep=" + cep + '\n' +
+                "Emails=" + emails + '\n'+
+                "PhoneNumber=" + phoneNumber +'\n'+
+                "Birthday=" + birthday +'\n'+
+                "Occupation=" + occupation +'\n';
     }
 }

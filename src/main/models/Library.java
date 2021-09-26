@@ -1,25 +1,97 @@
 package main.models;
 
 import main.utils.DataValidator;
+import main.utils.Occupation;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Library {
 
-    private List<Person> persons;
+    private List<Person> people;
     private List<Book> books;
 
     public Library() {
-        persons = new ArrayList<Person>();
+        people = new ArrayList<Person>();
         books = new ArrayList<Book>();
+    }
+
+    public List<Person> getAllPersons(){
+        return people;
+    }
+
+    public Person getOnePerson(String cpf){
+        if (verifyCpf(cpf)){
+            for (Person person: people) {
+                if (cpf.equals(person.getCpf())) {
+                    return person;
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean addPerson(String cpf, String name, String rua, String number, String cep, List<String> emails, List<String> phoneNumber, String birthday, Occupation occupation){
+        if (cpf.isEmpty() || !DataValidator.isCpf(cpf) || name.isEmpty() || rua.isEmpty() || !DataValidator.isNumber(number) || number.isEmpty() || cep.isEmpty() || emails.size() == 0 || phoneNumber.size() == 0 || birthday == null || occupation == null){
+            return false;
+        }
+        for (Person person: people) {
+            if (cpf.equals(person.getCpf())) {
+                return false;
+            }
+        }
+        Person newPerson = new Person(cpf, name, rua, Long.valueOf(number), cep, emails, phoneNumber, DataValidator.dateUser(birthday), occupation);
+        people.add(newPerson);
+        return true;
+    }
+
+    public boolean updatePerson(String cpf, String name, String rua, String number, String cep, List<String> emails, List<String> phoneNumber, String birthday, Occupation occupation){
+        if (cpf.isEmpty() || !DataValidator.isCpf(cpf) || name.isEmpty() || rua.isEmpty() || !DataValidator.isNumber(number) || number.isEmpty() || cep.isEmpty() || emails.size() == 0 || phoneNumber.size() == 0 || birthday == null || occupation == null){
+            return false;
+        }
+        if (verifyCpf(cpf)){
+            for (Person person: people) {
+                if (cpf.equals(person.getCpf())) {
+                    Person newPerson = new Person(cpf, name, rua, Long.valueOf(number), cep, emails, phoneNumber, DataValidator.dateUser(birthday), occupation);
+                    Person oldPerson = getOnePerson(cpf);
+                    int index = people.indexOf(oldPerson);
+                    people.remove(oldPerson);
+                    people.add(index, newPerson);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean deletePerson(String cpf){
+        if (verifyCpf(cpf)){
+            for (Person person: people) {
+                if (cpf.equals(person.getCpf())) {
+                    Person oldPerson = getOnePerson(cpf);
+                    people.remove(oldPerson);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean verifyCpf(String cpf){
+        for (Person person: people) {
+            if (person.getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+        return  false;
     }
 
     public List<Book> getAllBooks(){
         return books;
     }
 
-    public Book getOne(String isbn){
+    public Book getOneBook(String isbn){
         if (verifyIsbn(isbn)){
             for (Book book: books) {
                 if (isbn.equals(book.getIsbn())) {
@@ -53,7 +125,7 @@ public class Library {
             for (Book book: books) {
                 if (isbn.equals(book.getIsbn())) {
                     Book newBook = new Book(isbn, title, genre, authors, Long.valueOf(numberOfPages));
-                    Book oldBook = getOne(isbn);
+                    Book oldBook = getOneBook(isbn);
                     int index = books.indexOf(oldBook);
                     books.remove(oldBook);
                     books.add(index, newBook);
@@ -68,7 +140,7 @@ public class Library {
         if (verifyIsbn(isbn)){
             for (Book book: books) {
                 if (isbn.equals(book.getIsbn())) {
-                    Book oldBook = getOne(isbn);
+                    Book oldBook = getOneBook(isbn);
                     books.remove(oldBook);
                     return true;
                 }
@@ -85,7 +157,4 @@ public class Library {
         }
         return  false;
     }
-
-
-
 }
