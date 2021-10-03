@@ -51,23 +51,28 @@ public class DataValidator {
         else return false;
     }
 
-    private static boolean isPhone(String num){
-        return num.matches("^\\d{10,11}$");
-    }
-
     public static boolean isNumber(String num){
         return num.matches("^[0-9]*$");
     }
 
-    public static Date dateUser(String data) {
+    public static Date formatStringInDate(String data) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date dataUsuario;
         try {
             dataUsuario = sdf.parse(data);
             return dataUsuario;
         } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
+    }
+
+    public static String formatDateInString(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try{
+            return sdf.format(data);
+        } catch (Exception e){
+            return null;
+        }
+
     }
 }

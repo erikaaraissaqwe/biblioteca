@@ -31,7 +31,7 @@ public class PersonTest {
     public void createStudent(){
         emails = new ArrayList<>(List.of("erikaaraissaqwe@gmail.com"));
         phones = new ArrayList<>(List.of("16 99254-9652"));
-        principal = new Person("09548936461", "Erika Raissa Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/2000"), ALUNO);
+        principal = new Person("09548936461", "Erika Raissa Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/2000"), ALUNO);
     }
 
     @Test
@@ -221,15 +221,15 @@ public class PersonTest {
     @DisplayName("Testa getBirthday do person principal - aluno")
     @Order(16)
     public void testGetBirthday() {
-        Assertions.assertEquals(DataValidator.dateUser("17/07/2000"), principal.getBirthday());
+        Assertions.assertEquals(DataValidator.formatStringInDate("17/07/2000"), principal.getBirthday());
     }
 
     @Test
     @DisplayName("Testa setBirthday do person principal - aluno")
     @Order(17)
     public void testSetBirthday() {
-        principal.setBirthday(DataValidator.dateUser("18/08/2000"));
-        Assertions.assertEquals(DataValidator.dateUser("18/08/2000"), principal.getBirthday());
+        principal.setBirthday(DataValidator.formatStringInDate("18/08/2000"));
+        Assertions.assertEquals(DataValidator.formatStringInDate("18/08/2000"), principal.getBirthday());
     }
 
     @Test
@@ -251,7 +251,7 @@ public class PersonTest {
     @DisplayName("Testa a criação de uma nova pessoa - professor")
     @Order(20)
     public void testCreateNewPerson() {
-        Person p = new Person("09548934418", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/1980"), PROFESSOR);
+        Person p = new Person("09548934418", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/1980"), PROFESSOR);
         assertAll(
                 () -> assertNotNull(p),
                 () -> assertEquals("Erika Bueno", p.getName()),
@@ -265,7 +265,7 @@ public class PersonTest {
     @DisplayName("Testa o equals do Person")
     @Order(27)
     public void testEqualsPerson() {
-        Person p = new Person("05802820403", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/1980"), ALUNO);
+        Person p = new Person("05802820403", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/1980"), ALUNO);
         assertTrue(p.equals(principal));
     }
 
@@ -273,7 +273,7 @@ public class PersonTest {
     @DisplayName("Testa o toString do Person")
     @Order(28)
     public void testToStringPerson() {
-        Person p = new Person("09548936461", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.dateUser("17/07/1980"), ALUNO);
+        Person p = new Person("09548936461", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/1980"), ALUNO);
         String personForToString = "\nPerson:" +
                 "\nCpf=" + p.getCpf() + '\n' +
                 "Name=" + p.getName() + '\n' +
@@ -282,7 +282,7 @@ public class PersonTest {
                 "Cep=" + p.getCep() + '\n' +
                 "Emails=" + p.getEmails() + '\n'+
                 "PhoneNumber=" + p.getPhoneNumber() +'\n'+
-                "Birthday=" + p.getBirthday() +'\n'+
+                "Birthday=" + DataValidator.formatDateInString(p.getBirthday()) +'\n'+
                 "Occupation=" + p.getOccupation() +'\n';
         assertEquals(personForToString, p.toString());
     }

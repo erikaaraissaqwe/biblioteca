@@ -1,5 +1,6 @@
 package main.models;
 
+import main.utils.DataValidator;
 import main.utils.Occupation;
 
 import java.util.Date;
@@ -129,7 +130,7 @@ public class Person {
                 "Cep=" + cep + '\n' +
                 "Emails=" + emails + '\n'+
                 "PhoneNumber=" + phoneNumber +'\n'+
-                "Birthday=" + birthday +'\n'+
+                "Birthday=" + DataValidator.formatDateInString(birthday) +'\n'+
                 "Occupation=" + occupation +'\n';
     }
 }

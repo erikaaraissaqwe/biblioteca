@@ -40,7 +40,7 @@ public class Library {
                 return false;
             }
         }
-        Person newPerson = new Person(cpf, name, rua, Long.valueOf(number), cep, emails, phoneNumber, DataValidator.dateUser(birthday), occupation);
+        Person newPerson = new Person(cpf, name, rua, Long.valueOf(number), cep, emails, phoneNumber, DataValidator.formatStringInDate(birthday), occupation);
         people.add(newPerson);
         return true;
     }
@@ -52,7 +52,7 @@ public class Library {
         if (verifyCpf(cpf)){
             for (Person person: people) {
                 if (cpf.equals(person.getCpf())) {
-                    Person newPerson = new Person(cpf, name, rua, Long.valueOf(number), cep, emails, phoneNumber, DataValidator.dateUser(birthday), occupation);
+                    Person newPerson = new Person(cpf, name, rua, Long.valueOf(number), cep, emails, phoneNumber, DataValidator.formatStringInDate(birthday), occupation);
                     Person oldPerson = getOnePerson(cpf);
                     int index = people.indexOf(oldPerson);
                     people.remove(oldPerson);
