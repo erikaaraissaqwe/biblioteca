@@ -32,7 +32,7 @@ public class BookTest {
     @DisplayName("Teste - MAC")
     @EnabledOnOs({OS.MAC})
     @Order(15)
-    void testSetTitleParaMac(){
+    void setTitleParaMacTest(){
         Book b = new Book();
         b.setTitle("Como fazer um teste em JUnit?");
         String expected = "Como fazer um teste em JUnit?";
@@ -43,7 +43,7 @@ public class BookTest {
     @DisplayName("Teste - Windows")
     @EnabledOnOs({OS.WINDOWS})
     @Order(16)
-    void testSetTitleWindows(){
+    void setTitleWindowsTest(){
         Book b = new Book();
         b.setTitle("Como fazer um teste em JUnit II?");
         String expected = "Como fazer um teste em JUnit II?";
@@ -54,7 +54,7 @@ public class BookTest {
     @DisplayName("Teste - Java 8")
     @EnabledOnJre(JRE.JAVA_8)
     @Order(17)
-    void testSetISBNParaJRE8(){
+    void setISBNParaJRE8Test(){
         Book b = new Book();
         b.setIsbn("9876h");
         String expected = "9876h";
@@ -66,7 +66,7 @@ public class BookTest {
     @ParameterizedTest
     @ValueSource(strings = {"658L", "965L", "95645L"})
     @Order(18)
-    void testSetISBNPara(String str){
+    void setISBNParaTest(String str){
         Book b = new Book();
         b.setIsbn(str);
         assertEquals(str, b.getIsbn());
@@ -76,7 +76,7 @@ public class BookTest {
     @ParameterizedTest
     @ValueSource(strings = {"Livro I", "Livro II", "Livro III"})
     @Order(19)
-    void testGetTitleParametrizado(String str){
+    void getTitleParametrizadoTest(String str){
         Book b = new Book();
         b.setTitle(str);
         assertEquals(str, b.getTitle());
@@ -86,7 +86,7 @@ public class BookTest {
     @ParameterizedTest
     @ValueSource(strings = {"Romance", "Aventura", "Distopia"})
     @Order(20)
-    void testsetGenreParametrizado(String str){
+    void setGenreParametrizadoTest(String str){
         Book b = new Book();
         b.setGenre(str);
         assertEquals(str, b.getGenre());
@@ -95,7 +95,7 @@ public class BookTest {
     @Test
     @DisplayName("Testa se o título e o gênero são iguais")
     @Order(1)
-    public void testGets(){
+    public void getsTest(){
         assertAll(
                 () -> assertNotNull(principal),
                 () -> assertEquals("Como fazer um teste?", principal.getTitle()),
@@ -106,14 +106,14 @@ public class BookTest {
     @Test
     @DisplayName("Testa getISBN do book principal")
     @Order(2)
-    public void testGetISBN() {
+    public void getISBNTest() {
         Assertions.assertEquals("123456l", principal.getIsbn());
     }
 
     @Test
     @DisplayName("Testa setISBN do book principal")
     @Order(3)
-    public void testSetISBN() {
+    public void setISBNTest() {
         principal.setIsbn("123456OP");
         Assertions.assertEquals("123456OP", principal.getIsbn());
     }
@@ -121,14 +121,14 @@ public class BookTest {
     @Test
     @DisplayName("Testa getTitle do book principal")
     @Order(4)
-    public void testGetName() {
+    public void getNameTest() {
         Assertions.assertEquals("Como fazer um teste?", principal.getTitle());
     }
 
     @Test
     @DisplayName("Testa setTitle do book principal")
     @Order(5)
-    public void testSetTitle() {
+    public void setTitleTest() {
         principal.setTitle("Erika Raissa Bueno da Silva");
         Assertions.assertEquals("Erika Raissa Bueno da Silva", principal.getTitle());
     }
@@ -136,14 +136,14 @@ public class BookTest {
     @Test
     @DisplayName("Testa getGenre do book principal")
     @Order(6)
-    public void testgetGenre() {
+    public void getGenreTest() {
         Assertions.assertEquals("Acadêmico", principal.getGenre());
     }
 
     @Test
     @DisplayName("Testa setGenre do book principal")
     @Order(7)
-    public void testsetGenre() {
+    public void setGenreTest() {
         principal.setGenre("Romance");
         Assertions.assertEquals("Romance", principal.getGenre());
     }
@@ -151,14 +151,14 @@ public class BookTest {
     @Test
     @DisplayName("Testa getNumberOfPages do book principal")
     @Order(8)
-    public void testgetNumberOfPages() {
+    public void getNumberOfPagesTest() {
         Assertions.assertEquals(856L, principal.getNumberOfPages());
     }
 
     @Test
     @DisplayName("Testa setNumberOfPagesOfPagesOfPages do book principal")
     @Order(9)
-    public void testsetNumberOfPagesOfPagesOfPages() {
+    public void setNumberOfPagesOfPagesOfPagesTest() {
         principal.setNumberOfPages(859L);
         Assertions.assertEquals(859L, principal.getNumberOfPages());
     }
@@ -166,14 +166,14 @@ public class BookTest {
     @Test
     @DisplayName("Testa getAuthors do book principal")
     @Order(10)
-    public void testgetAuthors() {
+    public void getAuthorsTest() {
         Assertions.assertEquals(authors, principal.getAuthors());
     }
 
     @Test
     @DisplayName("Testa setAuthors do book principal")
     @Order(11)
-    public void testsetAuthors() {
+    public void setAuthorsTest() {
         ArrayList<String> authors2 = new ArrayList<>(Arrays.asList("Izabel", "Victor", "Raissa"));
         principal.setAuthors(authors2);
         Assertions.assertArrayEquals(new ArrayList[]{authors2}, new ArrayList[]{(ArrayList) principal.getAuthors()});
@@ -182,7 +182,7 @@ public class BookTest {
     @Test
     @DisplayName("Testa a criação de um novo book")
     @Order(12)
-    public void testCreateNewPerson() {
+    public void createNewPersonTest() {
         Book p = new Book("POT78", "Jogos Vorazes", "Distopia", authors, 756L);
         assertAll(
                 () -> assertNotNull(p),
@@ -196,7 +196,7 @@ public class BookTest {
     @Test
     @DisplayName("Testa o equals do book")
     @Order(13)
-    public void testEqualsPerson() {
+    public void equalsPersonTest() {
         Book b = new Book("123456OP", "Como fazer um teste II?", "Acadêmico II", authors, 856L);
         assertTrue(b.equals(principal));
     }
@@ -204,7 +204,7 @@ public class BookTest {
     @Test
     @DisplayName("Testa o toString do book")
     @Order(14)
-    public void testToStringPerson() {
+    public void toStringPersonTest() {
         Book p = new Book("POT78", "Jogos Vorazes", "Distopia", authors, 756L);
         String bookForToString = "\n\nLivro " + p.getIsbn() +":\n" +
                 "Isbn=" +  p.getIsbn() + '\n' +

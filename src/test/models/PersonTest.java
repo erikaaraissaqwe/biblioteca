@@ -38,7 +38,7 @@ public class PersonTest {
     @DisplayName("Teste - Linux")
     @EnabledOnOs({OS.LINUX})
     @Order(21)
-    void testSetNomeParaLinux(){
+    void setNomeParaLinuxTest(){
         Person p = new Person();
         p.setName("Izabel");
         String expected = "Izabel";
@@ -49,7 +49,7 @@ public class PersonTest {
     @DisplayName("Teste - Windows")
     @EnabledOnOs({OS.WINDOWS})
     @Order(22)
-    void testSetCepParaWindows(){
+    void setCepParaWindowsTest(){
         Person p = new Person();
         p.setCep("5596523");
         String expected ="5596523";
@@ -60,7 +60,7 @@ public class PersonTest {
     @DisplayName("Teste - Java 8")
     @EnabledOnJre(JRE.JAVA_8)
     @Order(25)
-    void testSetCpfParaJRE8(){
+    void setCpfParaJRE8Test(){
         Person p = new Person();
         p.setCpf("55965232696");
         String expected ="55965232696";
@@ -72,7 +72,7 @@ public class PersonTest {
     @ParameterizedTest
     @ValueSource(strings = {"09658932162", "96523665123", "9564596312"})
     @Order(26)
-    void testSetCpfParaJRE11(String str){
+    void setCpfParaJRE11Test(String str){
         Person p = new Person();
         p.setCpf(str);
         assertEquals(str, p.getCpf());
@@ -82,7 +82,7 @@ public class PersonTest {
     @ParameterizedTest
     @ValueSource(strings = {"Erika", "Raissa", "Bueno"})
     @Order(23)
-    void testGetNameParametrizado(String str){
+    void getNameParametrizadoTest(String str){
         Person newPerson = new Person();
         newPerson.setName(str);
         assertEquals(str, newPerson.getName());
@@ -92,7 +92,7 @@ public class PersonTest {
     @ParameterizedTest
     @ValueSource(strings = {"Rua das Terras", "Av. Raissa", "Rua Professor Bueno"})
     @Order(24)
-    void testSetRuaParametrizado(String str){
+    void setRuaParametrizadoTest(String str){
         Person newPerson = new Person();
         newPerson.setRua(str);
         assertEquals(str, newPerson.getRua());
@@ -101,7 +101,7 @@ public class PersonTest {
     @Test
     @DisplayName("Testa se o nome e o cpf são iguais")
     @Order(1)
-    public void testGets(){
+    public void getsTest(){
         assertAll(
                 () -> assertNotNull(principal),
                 () -> assertEquals("Erika Raissa Bueno", principal.getName()),
@@ -112,14 +112,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getCPF do person principal - aluno")
     @Order(2)
-    public void testGetCpf() {
+    public void getCpfTest() {
         Assertions.assertEquals("09548936461", principal.getCpf());
     }
 
     @Test
     @DisplayName("Testa setCPF do person principal - aluno")
     @Order(3)
-    public void testSetCpf() {
+    public void setCpfTest() {
         principal.setCpf("05802820403");
         Assertions.assertEquals("05802820403", principal.getCpf());
     }
@@ -127,14 +127,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getName do person principal - aluno")
     @Order(4)
-    public void testGetName() {
+    public void getNameTest() {
         Assertions.assertEquals("Erika Raissa Bueno", principal.getName());
     }
 
     @Test
     @DisplayName("Testa setName do person principal - aluno")
     @Order(5)
-    public void testSetName() {
+    public void setNameTest() {
         principal.setName("Erika Raissa Bueno da Silva");
         Assertions.assertEquals("Erika Raissa Bueno da Silva", principal.getName());
     }
@@ -142,14 +142,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getRua do person principal - aluno")
     @Order(6)
-    public void testGetRua() {
+    public void getRuaTest() {
         Assertions.assertEquals("Rua das Alamedas", principal.getRua());
     }
 
     @Test
     @DisplayName("Testa setRua do person principal - aluno")
     @Order(7)
-    public void testSetRua() {
+    public void setRuaTest() {
         principal.setRua("Rua dos Alfineiros");
         Assertions.assertEquals("Rua dos Alfineiros", principal.getRua());
     }
@@ -157,14 +157,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getNumber do person principal - aluno")
     @Order(8)
-    public void testGetNumber() {
+    public void getNumberTest() {
         Assertions.assertEquals(85L, principal.getNumber());
     }
 
     @Test
     @DisplayName("Testa setNumber do person principal - aluno")
     @Order(9)
-    public void testSetNumber() {
+    public void setNumberTest() {
         principal.setNumber(859L);
         Assertions.assertEquals(859L, principal.getNumber());
     }
@@ -172,14 +172,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getCep do person principal - aluno")
     @Order(10)
-    public void testGetCep() {
+    public void getCepTest() {
         Assertions.assertEquals("14815-000", principal.getCep());
     }
 
     @Test
     @DisplayName("Testa setCep do person principal - aluno")
     @Order(11)
-    public void testSetCep() {
+    public void setCepTest() {
         principal.setCep("56200-000");
         Assertions.assertEquals("56200-000", principal.getCep());
     }
@@ -187,14 +187,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getEmails do person principal - aluno")
     @Order(12)
-    public void testGetEmails() {
+    public void getEmailsTest() {
         Assertions.assertEquals(emails, principal.getEmails());
     }
 
     @Test
     @DisplayName("Testa setEmails do person principal - aluno")
     @Order(13)
-    public void testSetEmails() {
+    public void setEmailsTest() {
         ArrayList<String> emails2 = new ArrayList<>(Arrays.asList("erikaaraissaqwe@gmail.com", "erika@gmail.com", "raissaqwe@gmail.com"));
         principal.setEmails(emails2);
         Assertions.assertArrayEquals(new ArrayList[]{emails2}, new ArrayList[]{(ArrayList) principal.getEmails()});
@@ -203,14 +203,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getTelefones do person principal - aluno")
     @Order(14)
-    public void testGetPhoneNumber() {
+    public void getPhoneNumberTest() {
         Assertions.assertEquals(phones, principal.getPhoneNumber());
     }
 
     @Test
     @DisplayName("Testa setTelefones do person principal - aluno")
     @Order(15)
-    public void testSetPhoneNumber() {
+    public void setPhoneNumberTest() {
         ArrayList<String> phones2 = new ArrayList<>(Arrays.asList("16 99254-9652", "87 99254-9652"));
         principal.setPhoneNumber(phones2);
         Assertions.assertArrayEquals(new ArrayList[]{phones2},
@@ -220,14 +220,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getBirthday do person principal - aluno")
     @Order(16)
-    public void testGetBirthday() {
+    public void getBirthdayTest() {
         Assertions.assertEquals(DataValidator.formatStringInDate("17/07/2000"), principal.getBirthday());
     }
 
     @Test
     @DisplayName("Testa setBirthday do person principal - aluno")
     @Order(17)
-    public void testSetBirthday() {
+    public void setBirthdayTest() {
         principal.setBirthday(DataValidator.formatStringInDate("18/08/2000"));
         Assertions.assertEquals(DataValidator.formatStringInDate("18/08/2000"), principal.getBirthday());
     }
@@ -235,14 +235,14 @@ public class PersonTest {
     @Test
     @DisplayName("Testa getOccupation do person principal - aluno")
     @Order(18)
-    public void testGetOccupation() {
+    public void getOccupationTest() {
         Assertions.assertEquals(ALUNO, principal.getOccupation());
     }
 
     @Test
     @DisplayName("Testa setOccupation do person principal - aluno")
     @Order(19)
-    public void testSetOccupation() {
+    public void setOccupationTest() {
         principal.setOccupation(PROFESSOR);
         Assertions.assertEquals(PROFESSOR, principal.getOccupation());
     }
@@ -250,7 +250,7 @@ public class PersonTest {
     @Test
     @DisplayName("Testa a criação de uma nova pessoa - professor")
     @Order(20)
-    public void testCreateNewPerson() {
+    public void createNewPersonTest() {
         Person p = new Person("09548934418", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/1980"), PROFESSOR);
         assertAll(
                 () -> assertNotNull(p),
@@ -264,7 +264,7 @@ public class PersonTest {
     @Test
     @DisplayName("Testa o equals do Person")
     @Order(27)
-    public void testEqualsPerson() {
+    public void equalsPersonTest() {
         Person p = new Person("05802820403", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/1980"), ALUNO);
         assertTrue(p.equals(principal));
     }
@@ -272,7 +272,7 @@ public class PersonTest {
     @Test
     @DisplayName("Testa o toString do Person")
     @Order(28)
-    public void testToStringPerson() {
+    public void toStringPersonTest() {
         Person p = new Person("09548936461", "Erika Bueno", "Rua das Alamedas", 85L, "14815-000", emails, phones, DataValidator.formatStringInDate("17/07/1980"), ALUNO);
         String personForToString = "\nPerson:" +
                 "\nCpf=" + p.getCpf() + '\n' +

@@ -35,6 +35,7 @@ public class Library {
         if (cpf.isEmpty() || !DataValidator.isCpf(cpf) || name.isEmpty() || rua.isEmpty() || !DataValidator.isNumber(number) || number.isEmpty() || cep.isEmpty() || emails.size() == 0 || phoneNumber.size() == 0 || birthday == null || occupation == null){
             return false;
         }
+
         for (Person person: people) {
             if (cpf.equals(person.getCpf())) {
                 return false;
@@ -116,7 +117,6 @@ public class Library {
     }
 
     public boolean updateBook(String isbn, String title, String genre, List<String> authors, String numberOfPages){
-        System.out.println(authors.size());
         if (isbn.isEmpty() || title.isEmpty() || genre.isEmpty() || !DataValidator.isNumber(numberOfPages) || authors.size() == 0){
             return false;
         }
